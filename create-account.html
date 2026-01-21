@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSP SOLS - Create Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Common Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        nav ul li a i {
+            margin-left: 6px;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: #1a2e3a;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ff9800;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Create Account Specific Styles */
+        .create-account-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            padding: 40px 0;
+        }
+        
+        .account-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .account-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1a5d1a, #2e7d32);
+        }
+        
+        .account-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .account-header h2 {
+            font-size: 2.2rem;
+            color: #1a5d1a;
+            margin-bottom: 10px;
+        }
+        
+        .account-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            flex: 1;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #1a5d1a;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1a5d1a;
+            font-size: 1.1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #f9fafb;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #1a5d1a;
+            box-shadow: 0 0 0 3px rgba(26, 93, 26, 0.2);
+            background-color: white;
+        }
+        
+        .password-strength {
+            display: flex;
+            gap: 5px;
+            margin-top: 8px;
+        }
+        
+        .strength-meter {
+            height: 5px;
+            flex: 1;
+            background: #ddd;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .strength-meter.active {
+            background: #2e7d32;
+        }
+        
+        .password-rules {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .create-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(26, 93, 26, 0.3);
+            margin-top: 10px;
+        }
+        
+        .create-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(26, 93, 26, 0.4);
+        }
+        
+        .account-footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 1.05rem;
+            margin-top: 20px;
+        }
+        
+        .login-link {
+            color: #2e7d32;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-left: 5px;
+        }
+        
+        .login-link:hover {
+            color: #1a5d1a;
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .account-card {
+                padding: 30px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .account-card {
+                padding: 25px 20px;
+            }
+            
+            .account-header h2 {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>VSP SOLS</h1>
+                    <div class="tagline">FACING CHALLENGES, BUT ALSO HAS A PLAN FOR REVIVAL AND EXPANSION</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Latest-Events.html">Latest <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Aboutus.html">About Us <i class="fas fa-chevron-down"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="create-account-container">
+        <div class="account-card">
+            <div class="account-header">
+                <h2>Create Account</h2>
+                <p>Enter following details to create your VSP SOLS account</p>
+            </div>
+            
+            <form id="createAccountForm">
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" class="form-control" placeholder="Enter Email" required>
+                    </div>
+                </div>
+                
+                <!-- Username -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" class="form-control" placeholder="Enter Username" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Password -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" class="form-control" placeholder="Enter Password" required>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-meter"></div>
+                            <div class="strength-meter"></div>
+                            <div class="strength-meter"></div>
+                            <div class="strength-meter"></div>
+                        </div>
+                        <div class="password-rules">
+                            Use 8+ characters with a mix of letters, numbers & symbols
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Location Information -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" id="state" class="form-control" placeholder="Enter State" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="district">District</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-map"></i>
+                            <input type="text" id="district" class="form-control" placeholder="Enter District" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pincode">Pincode</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-map-pin"></i>
+                            <input type="text" id="pincode" class="form-control" placeholder="Enter Pincode" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Create Account Button -->
+                <button type="submit" class="create-btn">Create Account</button>
+                
+                <div class="account-footer">
+                    Already have an account? <a href="login.html" class="login-link">Log In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="Aboutus.html">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 VSP SOLS. All Rights Reserved. | Visakhapatnam Steel Plant
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Password strength indicator
+        const passwordInput = document.getElementById('password');
+        const strengthMeters = document.querySelectorAll('.strength-meter');
+        
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            
+            // Check password length
+            if (password.length >= 8) strength++;
+            
+            // Check for uppercase letters
+            if (/[A-Z]/.test(password)) strength++;
+            
+            // Check for numbers
+            if (/[0-9]/.test(password)) strength++;
+            
+            // Check for special characters
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            // Update strength meters
+            strengthMeters.forEach((meter, index) => {
+                if (index < strength) {
+                    meter.classList.add('active');
+                } else {
+                    meter.classList.remove('active');
+                }
+            });
+        });
+        
+        // Form validation
+        document.getElementById('createAccountForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const state = document.getElementById('state').value;
+            const district = document.getElementById('district').value;
+            const pincode = document.getElementById('pincode').value;
+            
+            // Simple validation
+            if (!email || !username || !password || !state || !district || !pincode) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+            
+            // Simulate account creation
+            document.querySelector('.create-btn').textContent = 'Creating Account...';
+            document.querySelector('.create-btn').disabled = true;
+            
+            setTimeout(() => {
+                alert('Account created successfully! Redirecting to dashboard...');
+                document.querySelector('.create-btn').textContent = 'Create Account';
+                document.querySelector('.create-btn').disabled = false;
+                // In a real app, you would redirect to the dashboard
+                // window.location.href = 'dashboard.html';
+            }, 1500);
+        });
+        
+        // Email validation function
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+    </script>
+</body>
+</html>

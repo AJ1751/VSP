@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSP SOLS - Sponsor Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Common Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        nav ul li a i {
+            margin-left: 6px;
+            font-size: 0.9rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Sponsor Section */
+        .sponsor-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .sponsor-title {
+            font-size: 2.5rem;
+            color: #1a5d1a;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .sponsor-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: #ff9800;
+        }
+        
+        .donation-methods {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            transition: all 0.3s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .method-title {
+            font-size: 1.8rem;
+            color: #2e7d32;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .method-title i {
+            color: #ff9800;
+        }
+        
+        .qr-code {
+            background: #f8faf8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+        
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+        .qr-placeholder i {
+            font-size: 5rem;
+            color: white;
+        }
+        
+        .bank-info {
+            text-align: left;
+            margin: 25px 0;
+            background: #f8faf8;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-item i {
+            color: #2e7d32;
+            font-size: 1.2rem;
+            min-width: 25px;
+        }
+        
+        .disclaimer {
+            background: #fff9e6;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .disclaimer p {
+            margin-bottom: 10px;
+        }
+        
+        .disclaimer strong {
+            color: #1a5d1a;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a2e3a;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ff9800;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .donation-methods {
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .sponsor-title {
+                font-size: 2rem;
+            }
+            
+            .method-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>VSP SOLS</h1>
+                    <div class="tagline">FACING CHALLENGES, BUT ALSO HAS A PLAN FOR REVIVAL AND EXPANSION</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Latest-Events.html">Latest <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Aboutus.html">About Us <i class="fas fa-chevron-down"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Zero Hunger</h2>
+                <p>Nourishing Lives, Creating Smiles!</p>
+            </div>
+        </section>
+
+        <!-- Sponsor Section -->
+        <section class="sponsor-section">
+            <h2 class="sponsor-title">Sponsor Us</h2>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px;">
+                Your support helps us fight hunger and create sustainable solutions for communities in need.
+            </p>
+            
+            <div style="background: #1a5d1a; color: white; padding: 15px; border-radius: 8px; display: inline-block; margin-bottom: 40px;">
+                <h3 style="font-size: 1.8rem;"><i class="fas fa-heart"></i> DONATIONS APPRECIATED</h3>
+            </div>
+            
+            <div class="donation-methods">
+                <!-- Net Banking Card -->
+                <div class="method-card">
+                    <h3 class="method-title"><i class="fas fa-landmark"></i> Net Banking</h3>
+                    <p style="margin-bottom: 25px;">Make a direct transfer to our bank account</p>
+                    
+                    <div class="bank-info">
+                        <div class="info-item">
+                            <i class="fas fa-university"></i>
+                            <span><strong>Bank Name:</strong> State Bank of India</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-signature"></i>
+                            <span><strong>Account Name:</strong> VSP SOLS Zero Hunger Fund</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-hashtag"></i>
+                            <span><strong>Account Number:</strong> 1234567890123</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <span><strong>IFSC Code:</strong> SBIN0000123</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span><strong>Branch:</strong> Visakhapatnam Steel Plant Branch</span>
+                        </div>
+                    </div>
+                    
+                    <button style="background: #2e7d32; color: white; border: none; padding: 12px 30px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fas fa-donate"></i> Donate Now
+                    </button>
+                </div>
+                
+                <!-- QR Code Card -->
+                <div class="method-card">
+                    <h3 class="method-title"><i class="fas fa-qrcode"></i> QR-Code</h3>
+                    <p style="margin-bottom: 25px;">Scan this QR code to make a UPI payment</p>
+                    
+                    <div class="qr-code">
+                        <div class="qr-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                    </div>
+                    
+                    <p style="margin: 20px 0; font-weight: 500; color: #1a5d1a;">UPI ID: vsp-sols-zhf@upi</p>
+                    
+                    <button style="background: #2e7d32; color: white; border: none; padding: 12px 30px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fas fa-mobile-alt"></i> Open UPI App
+                    </button>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                <p><strong>Important Note:</strong> Sponsoring is not mandatory and completely up to you.</p>
+                <p>Your contributions help us provide nutritious meals to underprivileged communities and support sustainable farming initiatives.</p>
+                <p>All donations are tax-exempt under Section 80G of the Income Tax Act.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="Aboutus.html">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 VSP SOLS. All Rights Reserved. | Visakhapatnam Steel Plant
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Button hover effects
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.2)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+        
+        // Simulate donation process
+        document.querySelectorAll('button')[0].addEventListener('click', function() {
+            alert('Thank you for choosing Net Banking! You will be redirected to our secure banking portal.');
+        });
+        
+        document.querySelectorAll('button')[1].addEventListener('click', function() {
+            alert('Please scan the QR code with your UPI app to complete the donation. Thank you for your support!');
+        });
+    </script>
+</body>
+</html>

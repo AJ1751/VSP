@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSP SOLS - Volunteer Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Common Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        nav ul li a i {
+            margin-left: 6px;
+            font-size: 0.9rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Volunteer Registration Section */
+        .volunteer-section {
+            display: flex;
+            gap: 40px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+        
+        .form-container {
+            flex: 1;
+            min-width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .form-header h2 {
+            font-size: 2.5rem;
+            color: #1a5d1a;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .form-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #ff9800;
+        }
+        
+        .form-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #1a5d1a;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1a5d1a;
+            font-size: 1.1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #f9fafb;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #1a5d1a;
+            box-shadow: 0 0 0 3px rgba(26, 93, 26, 0.2);
+            background-color: white;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .radio-option input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1a5d1a;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .radio-option input[type="radio"]:checked::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: #1a5d1a;
+            border-radius: 50%;
+        }
+        
+        .role-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .role-item {
+            background: #f8faf8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid #2e7d32;
+        }
+        
+        .role-item:hover {
+            background: #eaf4ea;
+            transform: translateX(5px);
+        }
+        
+        .role-item i {
+            color: #ff9800;
+            font-size: 1.2rem;
+        }
+        
+        .role-title {
+            font-weight: 600;
+            color: #1a5d1a;
+        }
+        
+        .gallery-section {
+            margin: 30px 0;
+        }
+        
+        .gallery-title {
+            font-size: 1.3rem;
+            color: #1a5d1a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1/1;
+            background: #f0f7f0;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item i {
+            font-size: 2.5rem;
+            color: #2e7d32;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(26, 93, 26, 0.3);
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(26, 93, 26, 0.4);
+        }
+        
+        /* Volunteer Info Section */
+        .info-container {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .volunteer-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        
+        .volunteer-icon i {
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .info-title {
+            font-size: 2.5rem;
+            color: #1a5d1a;
+            margin-bottom: 15px;
+        }
+        
+        .info-subtitle {
+            font-size: 1.4rem;
+            color: #2e7d32;
+            margin-bottom: 30px;
+        }
+        
+        .info-text {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .info-highlight {
+            background: #f0f7f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .info-highlight h3 {
+            color: #1a5d1a;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a2e3a;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ff9800;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .volunteer-section {
+                flex-direction: column;
+            }
+            
+            .form-container, .info-container {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .form-container, .info-container {
+                padding: 25px 20px;
+            }
+            
+            .form-header h2 {
+                font-size: 2rem;
+            }
+            
+            .info-title {
+                font-size: 2rem;
+            }
+            
+            .info-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>VSP SOLS</h1>
+                    <div class="tagline">FACING CHALLENGES, BUT ALSO HAS A PLAN FOR REVIVAL AND EXPANSION</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Latest-Events.html">Latest <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Aboutus.html">About Us <i class="fas fa-chevron-down"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Volunteer Registration</h2>
+                <p>Join our mission to make a difference in our community</p>
+            </div>
+        </section>
+
+        <!-- Volunteer Section -->
+        <div class="volunteer-section">
+            <!-- Form Section -->
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Volunteer Registration</h2>
+                    <p>Join us in our mission to create positive change</p>
+                </div>
+                
+                <form id="volunteerForm">
+                    <!-- Mobile Number -->
+                    <div class="form-group">
+                        <label for="mobile">Enter Your Mobile Number</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                            <input type="tel" id="mobile" class="form-control" placeholder="Enter your mobile number" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Type -->
+                    <div class="form-group">
+                        <label>Contact Type</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="contactType" value="personal" checked>
+                                <span>Personal</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="contactType" value="other">
+                                <span>Other</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Volunteer Role -->
+                    <div class="form-group">
+                        <label>Volunteer Role</label>
+                        <p style="margin-bottom: 15px; color: #666;">Select one or more roles you're interested in</p>
+                        
+                        <ul class="role-list">
+                            <li class="role-item">
+                                <i class="fas fa-hands-helping"></i>
+                                <div>
+                                    <div class="role-title">Community Outreach Coordinator</div>
+                                    <div>Organize local events and programs</div>
+                                </div>
+                            </li>
+                            <li class="role-item">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                <div>
+                                    <div class="role-title">Education Volunteer</div>
+                                    <div>Teach and mentor community members</div>
+                                </div>
+                            </li>
+                            <li class="role-item">
+                                <i class="fas fa-seedling"></i>
+                                <div>
+                                    <div class="role-title">Environmental Steward</div>
+                                    <div>Lead sustainability initiatives</div>
+                                </div>
+                            </li>
+                            <li class="role-item">
+                                <i class="fas fa-laptop-code"></i>
+                                <div>
+                                    <div class="role-title">Tech Support Volunteer</div>
+                                    <div>Assist with digital literacy programs</div>
+                                </div>
+                            </li>
+                            <li class="role-item">
+                                <i class="fas fa-first-aid"></i>
+                                <div>
+                                    <div class="role-title">Health & Wellness Guide</div>
+                                    <div>Support community health programs</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Form Gallery -->
+                    <div class="gallery-section">
+                        <div class="gallery-title">
+                            <i class="fas fa-images"></i>
+                            <span>Add Visuals (Form Gallery)</span>
+                        </div>
+                        <p style="margin-bottom: 15px; color: #666;">Upload relevant documents or photos</p>
+                        
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="gallery-item">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="gallery-item">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+            
+            <!-- Info Section -->
+            <div class="info-container">
+                <div class="volunteer-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                
+                <h2 class="info-title">VolunteerMatch</h2>
+                <h3 class="info-subtitle">Join Us As a Volunteer</h3>
+                
+                <p class="info-text">At VSP SOLS, we believe that volunteers are the backbone of our organization. Your time and skills can make a significant impact on our community initiatives.</p>
+                
+                <p class="info-text">Whether you can contribute a few hours a week or join us for special events, your participation helps us achieve our mission of community development and sustainability.</p>
+                
+                <div class="info-highlight">
+                    <h3>Why Volunteer With Us?</h3>
+                    <p>Make a difference • Gain experience • Build community • Learn new skills</p>
+                </div>
+                
+                <p class="info-text">After submitting your registration, our volunteer coordinator will contact you to discuss opportunities that match your interests and availability.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="Aboutus.html">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 VSP SOLS. All Rights Reserved. | Visakhapatnam Steel Plant
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation
+        document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const mobile = document.getElementById('mobile').value;
+            
+            if (!mobile) {
+                alert('Please enter your mobile number');
+                return;
+            }
+            
+            // Simulate form submission
+            document.querySelector('.submit-btn').textContent = 'Submitting...';
+            document.querySelector('.submit-btn').disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your volunteer registration! Our team will contact you shortly.');
+                document.querySelector('.submit-btn').textContent = 'Submit';
+                document.querySelector('.submit-btn').disabled = false;
+            }, 1500);
+        });
+        
+        // Role selection
+        const roleItems = document.querySelectorAll('.role-item');
+        roleItems.forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                if (this.classList.contains('selected')) {
+                    this.style.backgroundColor = '#e1f0e1';
+                    this.style.borderLeftColor = '#ff9800';
+                } else {
+                    this.style.backgroundColor = '#f8faf8';
+                    this.style.borderLeftColor = '#2e7d32';
+                }
+            });
+        });
+        
+        // Gallery item click
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                alert('In a complete implementation, this would open a file upload dialog');
+            });
+        });
+    </script>
+</body>
+</html>

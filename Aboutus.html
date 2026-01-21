@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSP SOLS - About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Common Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        nav ul li a i {
+            margin-left: 6px;
+            font-size: 0.9rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* About Section */
+        .about-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1a5d1a, #2e7d32);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: #1a5d1a;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #ff9800;
+        }
+        
+        .team-name {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #2e7d32;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .mission-vision {
+            display: flex;
+            gap: 40px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+        
+        .mv-card {
+            flex: 1;
+            min-width: 300px;
+            background: #f8faf8;
+            border-radius: 10px;
+            padding: 30px;
+            border-left: 4px solid #ff9800;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .mv-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mv-card.vision {
+            border-left-color: #1a5d1a;
+        }
+        
+        .mv-title {
+            font-size: 1.5rem;
+            color: #1a5d1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .mv-title i {
+            background: #1a5d1a;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .vision .mv-title i {
+            background: #ff9800;
+        }
+        
+        .mv-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        /* Socials Section */
+        .socials-section {
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            color: white;
+            padding: 60px 0;
+            border-radius: 10px;
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .socials-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+        
+        .socials-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .social-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            width: 100%;
+            max-width: 350px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ff9800;
+        }
+        
+        .social-handle {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .social-link {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #ff9800;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a2e3a;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ff9800;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .about-section {
+                padding: 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .mission-vision {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .socials-title {
+                font-size: 2rem;
+            }
+            
+            .about-section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>VSP SOLS</h1>
+                    <div class="tagline">FACING CHALLENGES, BUT ALSO HAS A PLAN FOR REVIVAL AND EXPANSION</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Latest-Events.html">Latest <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Aboutus.html">About Us <i class="fas fa-chevron-down"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Zero Hunger</h2>
+                <p>Nourishing Lives, Creating Smiles!</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            
+            <div class="team-name">Team DSYJVS06</div>
+            
+            <div class="about-content">
+                <p class="about-text">
+                    We are a team of six passionate individuals committed to improving everyday travel experiences around the Vizag Steel Plant area. Our mission is simple — to create a platform where people can easily report issues like potholes, road damages, or other public infrastructure concerns, and ensure they are addressed promptly.
+                </p>
+                
+                <div class="mission-vision">
+                    <!-- Vision Card -->
+                    <div class="mv-card vision">
+                        <div class="mv-title">
+                            <i class="fas fa-eye"></i>
+                            <span>Our Vision</span>
+                        </div>
+                        <p class="mv-description">
+                            To build a safer, more responsive travel experience for everyone by enabling community-driven reporting and resolution of infrastructure issues.
+                        </p>
+                    </div>
+                    
+                    <!-- Mission Card -->
+                    <div class="mv-card">
+                        <div class="mv-title">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Our Mission</span>
+                        </div>
+                        <p class="mv-description">
+                            To empower citizens with a simple, transparent, and action-oriented platform that turns public concerns into real solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Socials Section -->
+        <section class="socials-section">
+            <h2 class="socials-title">Our Socials</h2>
+            
+            <div class="socials-grid">
+                <!-- Social Card 1 -->
+                <div class="social-card">
+                    <div class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="social-handle">@team-dsyjvs06.github.com</div>
+                    <p>Follow our development journey and contribute to our open-source projects</p>
+                    <a href="#" class="social-link">Visit GitHub</a>
+                </div>
+                
+                <!-- Social Card 2 -->
+                <div class="social-card">
+                    <div class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="social-handle">@vspsols_twitter.com</div>
+                    <p>Stay updated with our latest initiatives and community updates</p>
+                    <a href="#" class="social-link">Follow Us</a>
+                </div>
+                
+                <!-- Social Card 3 -->
+                <div class="social-card">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-handle">@vspsols_instagram.com</div>
+                    <p>See our impact through photos and stories from the community</p>
+                    <a href="#" class="social-link">View Profile</a>
+                </div>
+                
+                <!-- Social Card 4 -->
+                <div class="social-card">
+                    <div class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="social-handle">@vspsols_linkedin.com</div>
+                    <p>Connect with our professional network and explore partnerships</p>
+                    <a href="#" class="social-link">Connect</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="Aboutus.html">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 VSP SOLS. All Rights Reserved. | Visakhapatnam Steel Plant
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for mission/vision cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const mvCards = document.querySelectorAll('.mv-card');
+            
+            mvCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // Social card animation
+            const socialCards = document.querySelectorAll('.social-card');
+            
+            socialCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.background = 'rgba(255, 255, 255, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.background = 'rgba(255, 255, 255, 0.1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

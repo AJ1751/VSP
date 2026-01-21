@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSP SOLS - Report an Issue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Common Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        nav ul li a i {
+            margin-left: 6px;
+            font-size: 0.9rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Solution Section */
+        .solution-section {
+            display: flex;
+            gap: 40px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+        
+        .form-container {
+            flex: 1;
+            min-width: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1a5d1a, #2e7d32);
+        }
+        
+        .section-title {
+            margin-bottom: 30px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1a5d1a;
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #1a5d1a;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #f9fafb;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #1a5d1a;
+            box-shadow: 0 0 0 3px rgba(26, 93, 26, 0.2);
+            background-color: white;
+        }
+        
+        .select-container {
+            position: relative;
+        }
+        
+        .select-container::after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: #1a5d1a;
+            pointer-events: none;
+        }
+        
+        select.form-control {
+            appearance: none;
+            padding-right: 40px;
+        }
+        
+        /* Issue Details Table */
+        .issue-details {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .issue-details tr {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .issue-details tr:last-child {
+            border-bottom: none;
+        }
+        
+        .issue-details td {
+            padding: 15px;
+        }
+        
+        .issue-details td:first-child {
+            font-weight: 600;
+            color: #1a5d1a;
+            background: #f8faf8;
+            width: 40%;
+        }
+        
+        .issue-details .status {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        
+        .priority-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #ff9800;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Media Section */
+        .media-section {
+            margin: 40px 0 20px;
+        }
+        
+        .media-title {
+            font-size: 1.3rem;
+            color: #1a5d1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .media-item {
+            aspect-ratio: 1/1;
+            background: #f0f7f0;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px dashed #1a5d1a;
+        }
+        
+        .media-item:hover {
+            background: #e1f0e1;
+            transform: translateY(-5px);
+        }
+        
+        .media-item i {
+            font-size: 2.5rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .media-item span {
+            color: #1a5d1a;
+            font-weight: 500;
+        }
+        
+        /* Info Section */
+        .info-container {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .info-header h3 {
+            font-size: 1.8rem;
+            color: #1a5d1a;
+            margin-bottom: 15px;
+        }
+        
+        .info-card {
+            background: #f8faf8;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .info-card h4 {
+            font-size: 1.3rem;
+            color: #1a5d1a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .info-card ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .info-card ul li::before {
+            content: '•';
+            color: #ff9800;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .info-card p {
+            line-height: 1.7;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(26, 93, 26, 0.3);
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(26, 93, 26, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a2e3a;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ff9800;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .solution-section {
+                flex-direction: column;
+            }
+            
+            .form-container, .info-container {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .form-container {
+                padding: 30px;
+            }
+            
+            .media-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .form-container, .info-container {
+                padding: 25px 20px;
+            }
+            
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>VSP SOLS</h1>
+                    <div class="tagline">FACING CHALLENGES, BUT ALSO HAS A PLAN FOR REVIVAL AND EXPANSION</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Latest-Events.html">Latest <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="Aboutus.html">About Us <i class="fas fa-chevron-down"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Need Solution</h2>
+                <p>Report issues and help us improve our community</p>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <div class="solution-section">
+            <!-- Form Section -->
+            <div class="form-container">
+                <div class="section-title">
+                    <h2>Report an Issue</h2>
+                    <p>Provide details about the problem you've encountered</p>
+                </div>
+                
+                <form id="solutionForm">
+                    <!-- Spot Type -->
+                    <div class="form-group">
+                        <label for="spotType">Enter Spot Type</label>
+                        <div class="select-container">
+                            <select id="spotType" class="form-control" required>
+                                <option value="">Select a spot type</option>
+                                <option value="road">Road Issue</option>
+                                <option value="water">Water Problem</option>
+                                <option value="electricity">Electricity Issue</option>
+                                <option value="sanitation">Sanitation Problem</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label for="location">Enter the location</label>
+                        <input type="text" id="location" class="form-control" placeholder="Enter precise location" required>
+                    </div>
+                    
+                    <!-- Issue Details -->
+                    <table class="issue-details">
+                        <tr>
+                            <td>Begger Spot</td>
+                            <td class="status">✔ Resolved</td>
+                        </tr>
+                        <tr>
+                            <td>Number Of Problems</td>
+                            <td>
+                                <input type="range" min="1" max="100" value="50" class="form-control">
+                                <div style="text-align: center; margin-top: 5px; font-weight: 500;">50</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>
+                                <div style="margin-bottom: 10px;">Yes</div>
+                                <div>Need Of Work</div>
+                                <div class="priority-tag">Urgent Basis</div>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Media Section -->
+                    <div class="media-section">
+                        <div class="media-title">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Add Location Media</span>
+                        </div>
+                        
+                        <div class="media-grid">
+                            <div class="media-item">
+                                <i class="fas fa-image"></i>
+                                <span>Add Visuals</span>
+                            </div>
+                            <div class="media-item">
+                                <i class="fas fa-images"></i>
+                                <span>Form Gallery</span>
+                            </div>
+                            <div class="media-item">
+                                <i class="fas fa-video"></i>
+                                <span>Add Video</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">Submit Report</button>
+                </form>
+            </div>
+            
+            <!-- Info Section -->
+            <div class="info-container">
+                <div class="info-header">
+                    <h3>Reporting Guidelines</h3>
+                    <p>Follow these tips for effective issue reporting</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4><i class="fas fa-lightbulb"></i> Best Practices</h4>
+                    <ul>
+                        <li>Be specific about the location (landmarks, nearby shops)</li>
+                        <li>Provide accurate spot type classification</li>
+                        <li>Estimate the severity of the problem</li>
+                        <li>Add clear photos/videos when possible</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4><i class="fas fa-clock"></i> Response Time</h4>
+                    <p>Our team aims to respond to reports within 24-48 hours. Urgent issues are prioritized based on severity and potential impact.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4><i class="fas fa-tags"></i> Priority Levels</h4>
+                    <p>Reports are categorized by urgency:</p>
+                    <ul>
+                        <li><strong>Low</strong>: Cosmetic issues, minor inconveniences</li>
+                        <li><strong>Medium</strong>: Functional problems affecting some users</li>
+                        <li><strong>High</strong>: Safety hazards, critical infrastructure failures</li>
+                        <li><strong>Urgent</strong>: Immediate danger, widespread impact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="Latest-Events.html">Latest Events</a>
+                <a href="Aboutus.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 VSP SOLS. All Rights Reserved. | Visakhapatnam Steel Plant
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation
+        document.getElementById('solutionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const spotType = document.getElementById('spotType').value;
+            const location = document.getElementById('location').value;
+            
+            if (!spotType || !location) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Simulate form submission
+            document.querySelector('.submit-btn').textContent = 'Submitting...';
+            document.querySelector('.submit-btn').disabled = true;
+            
+            setTimeout(() => {
+                alert('Report submitted successfully! Our team will review it shortly.');
+                document.querySelector('.submit-btn').textContent = 'Submit Report';
+                document.querySelector('.submit-btn').disabled = false;
+            }, 1500);
+        });
+        
+        // Range slider value display
+        const rangeSlider = document.querySelector('input[type="range"]');
+        const rangeValue = document.querySelector('td div');
+        
+        rangeSlider.addEventListener('input', function() {
+            rangeValue.textContent = this.value;
+        });
+        
+        // Media item click
+        const mediaItems = document.querySelectorAll('.media-item');
+        mediaItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const action = this.querySelector('span').textContent;
+                alert(`In a complete implementation, this would open the ${action} interface`);
+            });
+        });
+    </script>
+</body>
+</html>
